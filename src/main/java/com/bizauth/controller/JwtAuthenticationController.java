@@ -23,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.bizauth.config.JwtTokenUtil;
 import com.bizauth.model.JwtRequest;
 import com.bizauth.model.JwtResponse;
+import com.bizauth.model.UserDTO;
 import com.bizauth.service.JwtUserDetailsService;
 
 @RestController
@@ -34,9 +35,11 @@ public class JwtAuthenticationController {
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
-
-	@Autowired
-	private UserDetailsService jwtInMemoryUserDetailsService;
+	/*
+	 * @Autowired private UserDetailsService jwtInMemoryUserDetailsService;
+	 */
+	
+	
 	
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
@@ -69,7 +72,7 @@ public class JwtAuthenticationController {
 			          HttpStatus.BAD_REQUEST, "Incorrect username or password  :"+ex2.getMessage(),ex2);
 			
 		}
-		final UserDetails userDetails = jwtInMemoryUserDetailsService
+		final UserDetails userDetails = userDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
@@ -77,6 +80,11 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+		return ResponseEntity.ok(userDetailsService.save(user));
+	}
+	
 	private void authenticate(String username, String password) throws Exception {
 		Objects.requireNonNull(username);
 		Objects.requireNonNull(password);
