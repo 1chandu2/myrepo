@@ -3,6 +3,7 @@ package com.bizauth.model;
 
 import javax.persistence.*;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="user_tbl")
