@@ -22,13 +22,13 @@ public class IndustryController {
 	@Autowired
 	private IndustryService industryService;
 	
-	@PostMapping(value = "/addIndustry")
+	@PostMapping(value = "/Industries")
 	public ResponseEntity<?> insert(@RequestBody IndustryVO industryVO) {
 		this.industryService.insert(industryVO);
 		return (ResponseEntity<?>) ResponseEntity.ok("Industry Insert Successs!");
 	}
 	
-	@GetMapping(value = "/viewIndustries")
+	@GetMapping(value = "/Industries")
 	public List<IndustryVO> search() {
 		List<IndustryVO> industryList = this.industryService.search();
 		return industryList;

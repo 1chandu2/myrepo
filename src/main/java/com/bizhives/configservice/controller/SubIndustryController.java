@@ -24,7 +24,7 @@ public class SubIndustryController {
 	@Autowired
 	private SubIndustryService subIndustryService;
 	
-	@PostMapping(value = "/subindustry")
+	@PostMapping(value = "/Industry/subindustries")
 	public ResponseEntity<?> insert(@RequestBody SubIndustryDTO subIndustryDTO) {
 		
 		IndustryVO industryVO = new IndustryVO();
@@ -38,7 +38,7 @@ public class SubIndustryController {
 		return (ResponseEntity<?>) ResponseEntity.ok("SubIndustry Insert Successs!");
 	}
 	
-	@GetMapping(value = "/subindustries/{id}")
+	@GetMapping(value = "/Industry/subindustries/{id}")
 	public List<SubIndustryVO> search(@PathVariable int id) {
 		List<SubIndustryVO> subIndustryList = this.subIndustryService.findSubIndustryById(id);
 		return subIndustryList;
