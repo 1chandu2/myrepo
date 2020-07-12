@@ -3,6 +3,7 @@ package com.bizhives.configservice.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public class SubIndustryController {
 	private SubIndustryService subIndustryService;
 	
 	@PostMapping(value = "/Industry/subindustries")
-	public ResponseEntity<?> insert(@RequestBody SubIndustryDTO subIndustryDTO) {
+public ResponseEntity<?> insert(@RequestBody SubIndustryDTO subIndustryDTO) {
 		
 		IndustryVO industryVO = new IndustryVO();
 		industryVO.setId(subIndustryDTO.getIndustryId());
@@ -35,8 +36,8 @@ public class SubIndustryController {
 		subIndustryVO.setSubIndustryName(subIndustryDTO.getSubIndustryName());
 		subIndustryVO.setIndustryVO(industryVO);
 		this.subIndustryService.insertSubIndustry(subIndustryVO);
-		return (ResponseEntity<?>) ResponseEntity.ok("SubIndustry Insert Successs!");
-	}
+		 return new ResponseEntity<>(subIndustryVO, HttpStatus.CREATED);
+		}
 	
 	@GetMapping(value = "/Industry/subindustries/{id}")
 	public List<SubIndustryVO> search(@PathVariable int id) {

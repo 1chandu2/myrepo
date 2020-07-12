@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,9 +26,8 @@ public class IndustryController {
 	@PostMapping(value = "/Industries")
 	public ResponseEntity<?> insert(@RequestBody IndustryVO industryVO) {
 		this.industryService.insert(industryVO);
-		return (ResponseEntity<?>) ResponseEntity.ok("Industry Insert Successs!");
+		 return new ResponseEntity<>(industryVO.getId(), HttpStatus.CREATED);
 	}
-	
 	@GetMapping(value = "/Industries")
 	public List<IndustryVO> search() {
 		List<IndustryVO> industryList = this.industryService.search();
