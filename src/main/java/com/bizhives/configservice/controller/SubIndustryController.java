@@ -25,7 +25,7 @@ public class SubIndustryController {
 	@Autowired
 	private SubIndustryService subIndustryService;
 	
-	@PostMapping(value = "/Industry/subindustries")
+	@PostMapping(value = "/Industry/Subindustry")
 public ResponseEntity<?> insert(@RequestBody SubIndustryDTO subIndustryDTO) {
 		
 		IndustryVO industryVO = new IndustryVO();
@@ -39,7 +39,7 @@ public ResponseEntity<?> insert(@RequestBody SubIndustryDTO subIndustryDTO) {
 		 return new ResponseEntity<>(subIndustryVO, HttpStatus.CREATED);
 		}
 	
-	@GetMapping(value = "/Industry/subindustries/{id}")
+	@GetMapping(value = "/Industry/{id}/Subindustry")
 	public List<SubIndustryVO> search(@PathVariable int id) {
 		List<SubIndustryVO> subIndustryList = this.subIndustryService.findSubIndustryById(id);
 		return subIndustryList;

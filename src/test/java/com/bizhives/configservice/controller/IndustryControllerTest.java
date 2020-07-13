@@ -46,10 +46,10 @@ public class IndustryControllerTest {
 		
 		when(industryService.search()).thenReturn(industries);
 
-	mvc.perform(get("/v1/Industries").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+	mvc.perform(get("/v1/Industry").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(1)));
 	
-	mvc.perform(MockMvcRequestBuilders.post("/v1/Industries")
+	mvc.perform(MockMvcRequestBuilders.post("/v1/Industry")
             .content(asJsonString(industryVO))
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isCreated());

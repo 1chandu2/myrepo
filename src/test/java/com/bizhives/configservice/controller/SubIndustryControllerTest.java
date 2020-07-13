@@ -48,9 +48,9 @@ public class SubIndustryControllerTest {
 		
 		when(subIndustryService.searchSubIndustry()).thenReturn(subindustries);
 
-		mvc.perform(get("/v1/Industry/subindustries/3").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		mvc.perform(get("/v1/Industry/3/Subindustry").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
-		mvc.perform(MockMvcRequestBuilders.post("/v1/Industry/subindustries")
+		mvc.perform(MockMvcRequestBuilders.post("/v1/Industry/Subindustry")
 	            .content(asJsonString(subIndustryVO))
 	            .contentType(MediaType.APPLICATION_JSON))
 	            .andExpect(status().isCreated());
